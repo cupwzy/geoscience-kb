@@ -1,0 +1,25 @@
+{
+	"nodes":[
+		{"id":"home","type":"file","file":"09_Index/HOME.md","x":0,"y":0,"width":300,"height":160},
+		{"id":"inbox","type":"file","file":"00_Inbox/Inbox.md","x":-420,"y":-220,"width":280,"height":150},
+		{"id":"geophysics","type":"file","file":"01_Geophysics_Core/_Geophysics_Core_MOC.md","x":420,"y":-260,"width":300,"height":150},
+		{"id":"petrophysics","type":"file","file":"02_Petrophysics/_Petrophysics_MOC.md","x":420,"y":-70,"width":300,"height":150},
+		{"id":"interpretation","type":"file","file":"03_Seismic_Interpretation/_Seismic_Interpretation_MOC.md","x":420,"y":120,"width":300,"height":150},
+		{"id":"ml","type":"file","file":"04_ML_Geoscience/_ML_Geoscience_MOC.md","x":420,"y":310,"width":300,"height":150},
+		{"id":"projects","type":"file","file":"05_Projects/_Projects_MOC.md","x":-420,"y":0,"width":280,"height":150},
+		{"id":"papers","type":"file","file":"06_Papers_Zotero/_Papers_Zotero_MOC.md","x":-420,"y":190,"width":280,"height":150},
+		{"id":"data","type":"file","file":"08_Data/_Data_MOC.md","x":0,"y":260,"width":300,"height":150},
+		{"id":"templates","type":"file","file":"10_Templates/Project Note.md","x":0,"y":-260,"width":300,"height":150}
+	],
+	"edges":[
+		{"id":"home-inbox","fromNode":"home","fromSide":"left","toNode":"inbox","toSide":"right"},
+		{"id":"home-projects","fromNode":"home","fromSide":"left","toNode":"projects","toSide":"right"},
+		{"id":"home-papers","fromNode":"home","fromSide":"left","toNode":"papers","toSide":"right"},
+		{"id":"home-geophysics","fromNode":"home","fromSide":"right","toNode":"geophysics","toSide":"left"},
+		{"id":"home-petrophysics","fromNode":"home","fromSide":"right","toNode":"petrophysics","toSide":"left"},
+		{"id":"home-interpretation","fromNode":"home","fromSide":"right","toNode":"interpretation","toSide":"left"},
+		{"id":"home-ml","fromNode":"home","fromSide":"right","toNode":"ml","toSide":"left"},
+		{"id":"home-data","fromNode":"home","fromSide":"bottom","toNode":"data","toSide":"top"},
+		{"id":"home-templates","fromNode":"home","fromSide":"top","toNode":"templates","toSide":"bottom"}
+	]
+}
