@@ -1,76 +1,127 @@
 ---
 title: Acoustic Wave Equation
-tags: [wave-equation, seismic, forward-modeling]
+tags: [wave-equation, seismic, forward-modeling, acoustics]
+aliases: [声学波动方程, 声波方程, Acoustic Wave Equation]
 ---
 
-# 🔊 Acoustic Wave Equation（声学波动方程）
+# Acoustic Wave Equation（声学波动方程）
 
-用于描述**压力波在非弹性剪切介质中的传播**（地震最常用近似）。
+> [!abstract] 模型定位
+> 声学模型把介质视为不能承受剪切应力的流体，只描述体积压缩与膨胀，因此保留 P 波而不产生 S 波。
 
----
+## 1. 物理量与参数
 
-## 1. 标准形式
+- $p(\mathbf x,t)$：声压扰动；
+- $\mathbf v(\mathbf x,t)$：质点速度；
+- $\rho(\mathbf x)$：密度；
+- $K(\mathbf x)$：体积模量；
+- $V_p=\sqrt{K/\rho}$：声学 P 波速度。
 
-\[
-\frac{1}{v^2(x)} \frac{\partial^2 p}{\partial t^2} = \nabla^2 p + s(x,t)
-\]
+声学“压力”是标量；这里的 $\mathbf v$ 是质点速度，不要与波速 $V_p$ 混淆。
 
-- \(p\)：压力场
-- \(v(x)\)：速度模型
-- \(s\)：震源项
+## 2. 一阶速度—压力方程
 
----
+忽略体力、背景流动与耗散时，线性声学方程由两条物理定律组成：
 
-## 2. 物理假设（非常重要）
+**动量守恒**
 
-Acoustic model 忽略：
+$$
+\rho\frac{\partial\mathbf v}{\partial t}=-\nabla p;
+$$
 
-- S-wave（剪切波）
-- 各向异性
-- 粘弹性衰减（默认）
+**质量守恒与本构关系**
 
-👉 只保留 P-wave
+$$
+\frac{\partial p}{\partial t}=-K\nabla\cdot\mathbf v+s_p.
+$$
 
----
+压力梯度驱动质点运动，介质的体积压缩又引起压力变化，这个反馈构成波的传播。
 
-## 3. 为什么地震常用 acoustic？
+## 3. 二阶压力波动方程
 
-- 计算成本低
-- 易做反演（FWI）
-- 足够解释大部分反射数据
+对第二式求时间导数，并代入第一式：
 
----
+$$
+\frac{1}{K}\frac{\partial^2p}{\partial t^2}
+-\nabla\cdot\left(\frac{1}{\rho}\nabla p\right)
+=q.
+$$
 
-## 4. 数值求解核心思想
+这是适用于空间变密度介质的压力方程。若 $\rho$ 为常数，并使用 $V_p^2=K/\rho$，可化为
 
-通常用：
+$$
+\frac{1}{V_p^2(\mathbf x)}
+\frac{\partial^2p}{\partial t^2}
+-\nabla^2p
+=s.
+$$
 
-- Finite Difference (FD)
-- Spectral Method
-- Pseudo-spectral
+> [!warning] 震源项的写法
+> 不同文献会把源项写在等号两侧，或吸收 $V_p^2$、$\rho$ 等系数。比较公式时，应先检查源项的物理定义和量纲，不能只看符号。
 
----
+## 4. 常密度与变密度模型的区别
 
-## 5. 离散形式（2nd order FD）
+常密度方程计算简单，但界面反射主要由速度差异控制。变密度方程保留了
 
-\[
-p^{n+1} = 2p^n - p^{n-1} + \Delta t^2 v^2 \nabla^2 p^n
-\]
+$$
+\nabla\cdot\left(\frac1\rho\nabla p\right),
+$$
 
----
+因而能更合理地表达密度变化及声阻抗 $Z=\rho V_p$ 对反射振幅的影响。垂直入射平面波的反射系数为
 
-## ⚠️ 数值稳定性
+$$
+R=\frac{\rho_2V_{p2}-\rho_1V_{p1}}
+{\rho_2V_{p2}+\rho_1V_{p1}}.
+$$
 
-必须满足 CFL 条件：
+## 5. 声学近似保留与舍弃了什么
 
-\[
-\Delta t < \frac{\Delta x}{v_{max}\sqrt{d}}
-\]
+**能够描述**
 
----
+- P 波传播、透射、反射、折射与绕射；
+- 由声速和密度变化引起的运动学与部分振幅效应；
+- 多次波、复杂传播路径和有限频率效应。
 
-## 🧠 地球物理意义
+**默认不能描述**
 
-- velocity model → controls wave propagation
-- reflectivity → emerges from velocity contrast
-- imaging → inversion of this equation
+- S 波和 P–S / S–P 转换波；
+- 自由表面的完整弹性响应；
+- 各向异性（除非改用声学 VTI/TTI 等扩展方程）；
+- 本征衰减与频散（除非引入 $Q$ 模型）；
+- 完整的角度依赖弹性振幅。
+
+声学介质并非“非弹性介质”；更准确地说，它是**剪切模量 $\mu=0$ 的弹性流体近似**。
+
+## 6. 为什么勘探地震中常用
+
+- 参数少，通常只需 $V_p$，必要时加入 $\rho$；
+- 相比弹性模拟，内存和计算量更低；
+- 对以 P 波反射走时和构造成像为主的问题通常足够；
+- 正演算子和梯度计算较简洁，适合 RTM 与声学 FWI。
+
+但若目标依赖转换波、多分量数据、强弹性对比或振幅保真，声学近似可能产生系统性的建模误差。
+
+## 7. 与弹性方程的关系
+
+在各向同性线弹性介质中令剪切模量 $\mu=0$，介质不再支持剪切波，弹性方程便退化为声学模型。完整关系见 [[Elastic Wave Equation（弹性波，真实地球）]]。
+
+## 8. 数值求解提示
+
+常见方法包括有限差分、有限元、谱元和伪谱法。以常密度二阶方程为例，显式时间推进为
+
+$$
+p^{n+1}
+=2p^n-p^{n-1}
++\Delta t^2V_p^2\nabla_h^2p^n
++\Delta t^2s^n.
+$$
+
+该式还必须配合稳定性条件、空间采样要求和吸收边界，详见 [[数值模拟（Finite Difference + Seismic Modeling）]]。
+
+## 9. 自检问题
+
+- 当前使用的是常密度还是变密度方程？
+- $V_p$、$K$ 与 $\rho$ 是否相互一致？
+- 源项代表压力源、体积注入率还是力源？
+- 研究目标是否依赖 S 波、转换波或真实振幅？
+- 边界反射与数值频散是否会污染目标波场？

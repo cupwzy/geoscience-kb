@@ -11,6 +11,10 @@ tags:
 
 ## Foundations
 
+- [[Wave Equation 基础]]
+- [[Acoustic Wave Equation（声波方程，地震最常用）]]
+- [[Elastic Wave Equation（弹性波，真实地球）]]
+- [[数值模拟（Finite Difference + Seismic Modeling）]]
 - [[Seismic Wave Propagation]]
 - [[Reflection and Transmission Coefficients]]
 - [[AVO and AVA Basics]]
@@ -28,4 +32,3 @@ tags:
 - 当前解释使用的是地震响应、岩石物理响应，还是二者的混合代理？
 - 这个属性对岩性、孔隙度、流体、压力和噪声分别有多敏感？
 - 结论是否依赖特定频带、角度道集、处理流程或井震标定假设？
-
