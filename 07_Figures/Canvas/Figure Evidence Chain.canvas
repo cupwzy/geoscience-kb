@@ -1,63 +1,13 @@
 {
-  "nodes": [
-    {
-      "id": "observation",
-      "type": "text",
-      "text": "Observation\nWhat is visible in the figure?",
-      "x": 0,
-      "y": 0,
-      "width": 260,
-      "height": 120
-    },
-    {
-      "id": "interpretation",
-      "type": "text",
-      "text": "Interpretation\nWhat geological or geophysical meaning is inferred?",
-      "x": 340,
-      "y": 0,
-      "width": 280,
-      "height": 120
-    },
-    {
-      "id": "evidence",
-      "type": "text",
-      "text": "Evidence\nWhich wells, papers, data, or models support it?",
-      "x": 680,
-      "y": 0,
-      "width": 280,
-      "height": 120
-    },
-    {
-      "id": "uncertainty",
-      "type": "text",
-      "text": "Uncertainty\nWhat else could explain the same pattern?",
-      "x": 340,
-      "y": 190,
-      "width": 280,
-      "height": 120
-    }
-  ],
-  "edges": [
-    {
-      "id": "obs-int",
-      "fromNode": "observation",
-      "fromSide": "right",
-      "toNode": "interpretation",
-      "toSide": "left"
-    },
-    {
-      "id": "int-evi",
-      "fromNode": "interpretation",
-      "fromSide": "right",
-      "toNode": "evidence",
-      "toSide": "left"
-    },
-    {
-      "id": "int-unc",
-      "fromNode": "interpretation",
-      "fromSide": "bottom",
-      "toNode": "uncertainty",
-      "toSide": "top"
-    }
-  ]
+	"nodes":[
+		{"id":"observation","type":"text","text":"Observation\nWhat is visible in the figure?","x":0,"y":0,"width":260,"height":120},
+		{"id":"interpretation","type":"text","text":"Interpretation\nWhat geological or geophysical meaning is inferred?","x":340,"y":0,"width":280,"height":120},
+		{"id":"evidence","type":"text","text":"Evidence\nWhich wells, papers, data, or models support it?","x":680,"y":0,"width":280,"height":120},
+		{"id":"uncertainty","type":"text","text":"Uncertainty\nWhat else could explain the same pattern?","x":340,"y":190,"width":280,"height":120}
+	],
+	"edges":[
+		{"id":"obs-int","fromNode":"observation","fromSide":"right","toNode":"interpretation","toSide":"left"},
+		{"id":"int-evi","fromNode":"interpretation","fromSide":"right","toNode":"evidence","toSide":"left"},
+		{"id":"int-unc","fromNode":"interpretation","fromSide":"bottom","toNode":"uncertainty","toSide":"top"}
+	]
 }
