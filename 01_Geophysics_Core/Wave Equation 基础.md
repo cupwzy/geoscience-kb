@@ -117,7 +117,7 @@ $$
 
 - **正演**：已知 $m$ 和 $s$，求解 $u$ 与 $d$；
 - **成像（如 RTM）**：利用传播算子的伴随，将记录能量反传并定位反射界面；
-- **反演（如 FWI）**：通过减小观测数据与模拟数据的差异来更新 $m$。
+- **反演（如 [[Full Waveform Inversion|FWI]]）**：通过减小观测数据与模拟数据的差异来更新 $m$。
 
 > [!important] 核心认识
 > 地震剖面不是地下结构的直接照片，而是“介质参数、震源、传播物理、采集几何与处理流程”共同作用的响应。
@@ -127,7 +127,8 @@ $$
 1. [[Acoustic Wave Equation（声波方程，地震最常用）]]：理解压力波及声学近似；
 2. [[Elastic Wave Equation（弹性波，真实地球）]]：理解应力—应变与 P/S 波；
 3. [[数值模拟（Finite Difference + Seismic Modeling）]]：把连续方程转成可计算的离散格式；
-4. [[Zoeppritz Equation Derivation]] → [[AVO and AVA Basics]]：理解界面反射、转换波与角度响应。
+4. [[Full Waveform Inversion]]：理解如何利用完整波场反演地下介质参数；
+5. [[Zoeppritz Equation Derivation]] → [[AVO and AVA Basics]]：理解界面反射、转换波与角度响应。
 
 ## 8. 自检问题
 
